@@ -15,21 +15,20 @@ pipeline {
                 sh '''#!/bin/bash
                 echo 'Test Step: We run testing tool like pytest here'
 
-                # TODO fill out the path to conda here
-                # sudo /PATH/TO/CONDA init
+                # ✅ Initialize Conda (Modify the path if necessary)
+                source /opt/anaconda3/etc/profile.d/conda.sh
+                conda activate myenv  # Replace 'myenv' with your actual environment name
 
-                # TODO Complete the command to run pytest
-                # sudo /PATH/TO/CONDA run -n <Envinronment Name> <Command you want to run>
+                # ✅ Run pytest
+                pytest tests/  # Modify if your test folder is different
 
-                echo 'pytest not runned'
-                exit 1 #comment this line after implementing Jenkinsfile
+                echo 'pytest completed successfully'
                 '''
-
             }
         }
         stage('Deploy') {
             steps {
-                echo 'In this step, we deploy our porject'
+                echo 'In this step, we deploy our project'
                 echo 'Depending on the context, we may publish the project artifact or upload pickle files'
             }
         }
